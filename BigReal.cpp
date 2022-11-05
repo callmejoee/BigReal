@@ -76,6 +76,32 @@ public:
         whole = bigInteger;
         fraction = BigDecimalInt("0");
     };
+    //Copy Constructor
+    BigReal(const BigReal& other){
+        whole = other.whole;
+        fraction = other.fraction;
+        sign = other.sign;
+    };
+    // Move Constructor
+    BigReal(BigReal&& other){
+        whole = other.whole;
+        fraction = other.fraction;
+        sign = other.sign;
+    };
+    // Assignment Operator
+    BigReal& operator=(const BigReal& other){
+        whole = other.whole;
+        fraction = other.fraction;
+        sign = other.sign;
+        return *this;
+    };
+    // Move Assignment
+    BigReal& operator= (BigReal&& other){
+        whole = other.whole;
+        fraction = other.fraction;
+        sign = other.sign;
+        return *this;
+    };
 };
 int main() {
     BigReal a(-123.456);
