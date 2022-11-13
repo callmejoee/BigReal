@@ -23,6 +23,7 @@ private:
     char big_sign = '+';
 
 public:
+    BigReal ();
     BigReal(double realNumber);                 // Default constructor
     BigReal(string realNumber);
     BigReal(BigDecimalInt bigInteger);
@@ -30,14 +31,9 @@ public:
     BigReal(BigReal&&);                        // Move constructor
     BigReal &operator=(const BigReal&);        // Assignment Operator
     BigReal &operator= (BigReal&&);            // Move Assignment
-
-
-    ///////////////////////////
-
-    BigReal operator+ (BigReal& other);         // Overloading + operator
-    BigReal operator- (BigReal& other);         // Overloading - operator
-
-    ////////////////////////
+    
+    BigReal operator+ (BigReal& a);         // Overloading + operator
+    BigReal operator- (BigReal& a);         // Overloading - operator
 
     bool operator<(BigReal anotherReal);        // Overloading <  operator
     bool operator>(BigReal anotherReal);        // Overloading >  operator
@@ -46,5 +42,5 @@ public:
     char sign();                                // get sign of BigReal
 
 };
-
+BigReal::BigReal() {};
 #endif // BIGREALCLASS_H_INCLUDED
