@@ -125,15 +125,73 @@ BigReal& BigReal::operator= (BigReal&& other){
     }
 };
 ////////////////////////////////////////////
+BigReal BigReal :: operator+ (BigReal& z) {
+    BigReal answer;
+    if (z.big_sign == big_sign){
+        answer.big_sign = big_sign;
+        answer.whole = whole + z.whole;
+        answer.fraction = fraction + z.fraction;
+    }
+    else{
+        if (whole > z.whole){
+           answer.big_sign = big_sign;
+        }
+        else
+            answer.big_sign = z.big_sign;
 
-/*BigReal :: BigReal operator+ (BigReal& other){
+        answer.whole = whole - z.whole;
+        if (fraction >z.fraction)
+        answer.fraction = fraction - z.fraction;
+        else
+            answer.fraction = z.fraction - fraction;
+
+    }
+
+    return answer;
+}
+BigReal BigReal :: operator- (BigReal& z){
+    BigReal answer;
+    if (big_sign == '-' && z.big_sign == '-'){
+        if (whole > z.whole)
+        answer.big_sign = big_sign;
+        else if (z.whole > whole)
+            answer.big_sign = '+';
+        else
+            answer.big_sign = big_sign;
+
+        answer.whole = whole - z.whole;
+        answer.fraction = fraction - z.fraction;
+        cout << answer.big_sign;
+    }
+    else if (big_sign == '+' && z.big_sign == '+') {
+        if (whole > z.whole) {
+            answer.big_sign = big_sign;
+            answer.whole = whole - z.whole;
+            answer.fraction = fraction - z.fraction;
+        } else if (z.whole > whole) {
+            answer.big_sign = '-';
+            answer.whole = whole - z.whole;
+            answer.fraction = z.fraction - fraction;
+        }
+    }
+        else if (big_sign != z.big_sign){
+        if (big_sign == '+' && z.big_sign == '-'){
+            answer.whole = whole + z.whole;
+            answer.fraction = fraction + z.fraction;
+        }
+        else if (big_sign == '-' && z.big_sign == '+'){
+            answer.big_sign = '-';
+            answer.whole = whole + z.whole;
+            answer.fraction = fraction + z.fraction;
+            cout << answer.big_sign;
+
+        }
+
+        }
+
+    return answer;
 
 }
-
-BigReal :: Bigreal operator- (BigReal& other){
-
-}*/
-
 ////////////////////////////////////////////
 bool BigReal ::operator<(BigReal anotherReal)
 {
